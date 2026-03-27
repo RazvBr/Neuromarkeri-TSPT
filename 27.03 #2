@@ -1,0 +1,61 @@
+The deeper problem is that send_trigger_on_flip registers a callback but the flip that actually shows the image is inside the loop in run_image_for_duration, so the trigger and the stimulus onset are not guaranteed to be synchronized with what Unicorn Recorder sees.
+The Fix
+Draw the image and flip once outside the loop for the onset (this is where the trigger fires), then loop for the remaining duration:
+pythondef run_image_for_duration(win, image_stim, duration, response_key=None, trigger_code=None):
+    event.clearEvents(eventType="keyboard")
+    clock = core.Clock()
+
+    pressed = 0
+    rt = ""
+
+    # --- ONSET FLIP: trigger fires here, synchronized with image appearance ---
+    if trigger_code is not None:
+        code_bytes = str(trigger_code).encode("ascii")
+        win.callOnFlip(udp_sock.sendto, code_bytes, udp_endpoint)
+        win.callOnFlip(
+            threading.Thread(
+                target=reset_trigger_after,
+                args=(TRIGGER_RESET_DELAY,),
+                daemon=True
+            ).start
+        )
+
+    image_stim.draw()
+    win.flip()  # <-- trigger fires exactly here
+    clock.reset()  # reset clock AFTER the onset flip for accurate RT
+
+    # --- HOLD LOOP: keep image on screen, collect responses ---
+    while clock.getTime() < duration:
+        image_stim.draw()
+        win.flip()
+
+        if response_key is not None:
+            keys = event.getKeys(keyList=[response_key] + QUIT_KEYS, timeStamped=clock)
+            if keys:
+                for key, key_rt in keys:
+                    if key in QUIT_KEYS:
+                        cleanup_and_quit(win)
+                    if key == response_key and pressed == 0:
+                        pressed = 1
+                        rt = key_rt
+
+    return pressed, rt
+Then remove send_trigger_on_flip calls from the trial loops and pass trigger_code directly:
+python# In run_oddball_block and run_oddball_practice, replace:
+send_trigger_on_flip(win, trigger_code)
+pressed, rt = run_image_for_duration(win, image_stim, ODDBALL_STIM_DUR, response_key=TARGET_KEY)
+
+# With:
+pressed, rt = run_image_for_duration(win, image_stim, ODDBALL_STIM_DUR, response_key=TARGET_KEY, trigger_code=trigger_code)
+
+# In run_lpp_block, replace:
+send_trigger_on_flip(win, trigger_code)
+run_image_for_duration(win, image_stim, LPP_STIM_DUR, response_key=None)
+
+# With:
+run_image_for_duration(win, image_stim, LPP_STIM_DUR, response_key=None, trigger_code=trigger_code)
+And also add f.flush() after each writer.writerow() in save_trial — you still need that from before:
+pythondef save_trial(writer, row_dict, fieldnames, f):
+    writer.writerow({k: row_dict.get(k, "") for k in fieldnames})
+    f.flush()
+You can also delete the now-unused send_trigger_on_flip function entirely. This approach keeps the trigger, the image draw, and the flip as one atomic unit, which is what Unicorn Recorder needs to reliably capture the marker.
