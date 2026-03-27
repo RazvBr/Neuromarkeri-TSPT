@@ -59,3 +59,55 @@ pythondef save_trial(writer, row_dict, fieldnames, f):
     writer.writerow({k: row_dict.get(k, "") for k in fieldnames})
     f.flush()
 You can also delete the now-unused send_trigger_on_flip function entirely. This approach keeps the trigger, the image draw, and the flip as one atomic unit, which is what Unicorn Recorder needs to reliably capture the marker.
+
+
+============================
+def run_image_for_duration(win, image_stim, duration, response_key=None, trigger_code=None):
+    event.clearEvents(eventType="keyboard")
+    
+    pressed = 0
+    rt = ""
+
+    if trigger_code is not None:
+        code_bytes = str(trigger_code).encode("ascii")
+
+        def send_pulse():
+            udp_sock.sendto(code_bytes, udp_endpoint)
+            # Reset in a daemon thread so it doesn't block the flip loop
+            t = threading.Thread(target=_reset_after_delay, daemon=True)
+            t.start()
+
+        win.callOnFlip(send_pulse)
+
+    image_stim.draw()
+    win.flip()
+
+    clock = core.Clock()  # start clock AFTER onset flip
+
+    while clock.getTime() < duration:
+        image_stim.draw()
+        win.flip()
+
+        if response_key is not None:
+            keys = event.getKeys(
+                keyList=[response_key] + QUIT_KEYS,
+                timeStamped=clock
+            )
+            if keys:
+                for key, key_rt in keys:
+                    if key in QUIT_KEYS:
+                        cleanup_and_quit(win)
+                    if key == response_key and pressed == 0:
+                        pressed = 1
+                        rt = key_rt
+
+    return pressed, rt
+
+
+def _reset_after_delay():
+    """Runs in a daemon thread. Sends the 0-reset after the pulse duration."""
+    time.sleep(TRIGGER_RESET_DELAY)
+    try:
+        udp_sock.sendto(b"0", udp_endpoint)
+    except Exception:
+        pass
