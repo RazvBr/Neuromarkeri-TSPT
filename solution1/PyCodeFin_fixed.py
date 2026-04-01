@@ -1,0 +1,631 @@
+from psychopy import visual, core, event, gui, data
+import csv
+import random
+import socket
+import threading
+import time
+from pathlib import Path
+
+# =========================
+# EXPERIMENT SETTINGS
+# =========================
+
+# Timings
+ODDBALL_STIM_DUR = 1.000   # 1000 ms
+ODDBALL_ISI = 2.000        # 2000 ms
+LPP_FIX_DUR = 0.500        # 500 ms
+LPP_STIM_DUR = 2.000       # 2000 ms
+
+QUIT_KEYS = ["escape"]
+START_KEY = "space"
+TARGET_KEY = "space"
+
+BG_COLOR = "lightgrey"
+TEXT_COLOR = "black"
+FIX_COLOR = "black"
+
+BASE_DIR = Path(__file__).parent.resolve()
+DATA_DIR = BASE_DIR / "data"
+STIM_DIR = BASE_DIR / "stimuli"
+
+# Oddball stimuli
+ODDBALL_STANDARD_IMAGE = STIM_DIR / "oddball" / "standard_checkerboard.jpg"
+ODDBALL_TARGET_IMAGE = STIM_DIR / "oddball" / "target_checkerboard.jpg"
+
+# LPP stimuli file
+LPP_FILE = STIM_DIR / "lpp_images.csv"
+
+DATA_DIR.mkdir(exist_ok=True)
+
+EEG_METADATA = {
+    "device": "Unicorn Hybrid Black",
+    "n_channels": 8,
+    "sampling_rate_hz": 250,
+    "reference": "L/R mastoids",
+    "montage_description": "Fz,C3,Cz,C4,Pz,PO7,Oz,PO8",
+    "roi_n100": "PO7,Oz,PO8",
+    "roi_p300": "Pz",
+    "roi_lpp": "Pz"
+}
+
+# Classic oddball ratio
+ODDBALL_STANDARD_PROB = 0.80
+ODDBALL_TARGET_PROB = 0.20
+
+# =========================
+# UDP TRIGGER SETTINGS
+# =========================
+
+UDP_IP = "127.0.0.1"
+UDP_PORT = 1000
+
+udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+udp_endpoint = (UDP_IP, UDP_PORT)
+
+MARKERS = {
+    "practice_standard": 1,
+    "practice_target": 2,
+    "oddball_standard": 1,
+    "oddball_target": 2,
+    "lpp_positive": 3,
+    "lpp_neutral": 4,
+    "lpp_negative": 5,
+    "fallback": 9,
+}
+
+# FIX: increased from 0.03 (30 ms) to 0.05 (50 ms) to match the working standalone test script
+TRIGGER_RESET_DELAY = 0.05
+
+
+# =========================
+# HELPER FUNCTIONS
+# =========================
+
+def send_udp_bytes(payload: bytes):
+    udp_sock.sendto(payload, udp_endpoint)
+
+
+def reset_trigger_after(delay_s=TRIGGER_RESET_DELAY):
+    time.sleep(delay_s)
+    # FIX: was b"0" (byte value 48 = ASCII '0'); must be bytes([0]) (byte value 0 = integer 0)
+    send_udp_bytes(bytes([0]))
+
+
+def send_trigger_on_flip(win, code):
+    # FIX: was str(code).encode("ascii") which sent byte value 49 for code=1 (ASCII '1')
+    # Unicorn Recorder expects raw integer bytes, so bytes([1]) sends byte value 1
+    code_bytes = bytes([code])
+
+    def _send_onset_and_schedule_reset():
+        send_udp_bytes(code_bytes)
+        threading.Thread(
+            target=reset_trigger_after,
+            args=(TRIGGER_RESET_DELAY,),
+            daemon=True
+        ).start()
+
+    win.callOnFlip(_send_onset_and_schedule_reset)
+
+
+def cleanup_and_quit(win):
+    try:
+        udp_sock.close()
+    except Exception:
+        pass
+    win.close()
+    core.quit()
+
+
+def draw_text_and_wait(win, text, wait_for_key=True):
+    stim = visual.TextStim(
+        win,
+        text=text,
+        color=TEXT_COLOR,
+        wrapWidth=1.5,
+        height=0.045
+    )
+    stim.draw()
+    win.flip()
+
+    if wait_for_key:
+        keys = event.waitKeys(keyList=[START_KEY] + QUIT_KEYS)
+        if "escape" in keys:
+            cleanup_and_quit(win)
+
+
+def show_instruction_image(win, image_path, text):
+    image_stim = visual.ImageStim(
+        win,
+        image=str(image_path),
+        size=(0.9, 0.7),
+        units="height",
+        interpolate=True
+    )
+    text_stim = visual.TextStim(
+        win,
+        text=text,
+        color=TEXT_COLOR,
+        wrapWidth=1.5,
+        height=0.04,
+        pos=(0, -0.42)
+    )
+
+    image_stim.draw()
+    text_stim.draw()
+    win.flip()
+
+    keys = event.waitKeys(keyList=[START_KEY] + QUIT_KEYS)
+    if "escape" in keys:
+        cleanup_and_quit(win)
+
+
+def show_fixation(win, duration):
+    fix = visual.TextStim(win, text="+", color=FIX_COLOR, height=0.08)
+    fix.draw()
+    win.flip()
+    core.wait(duration)
+
+
+def save_trial(writer, row_dict, fieldnames):
+    writer.writerow({k: row_dict.get(k, "") for k in fieldnames})
+
+
+def load_lpp_csv(csv_path):
+    rows = []
+    with open(csv_path, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            rows.append({
+                "image": row["image"],
+                "valence": row["valence"]
+            })
+    return rows
+
+
+def run_image_for_duration(win, image_stim, duration, response_key=None):
+    clock = core.Clock()
+    event.clearEvents(eventType="keyboard")
+
+    pressed = 0
+    rt = ""
+
+    while clock.getTime() < duration:
+        image_stim.draw()
+        win.flip()
+
+        if response_key is not None:
+            keys = event.getKeys(keyList=[response_key] + QUIT_KEYS, timeStamped=clock)
+            if keys:
+                for key, key_rt in keys:
+                    if key in QUIT_KEYS:
+                        cleanup_and_quit(win)
+                    if key == response_key and pressed == 0:
+                        pressed = 1
+                        rt = key_rt
+
+    return pressed, rt
+
+
+def build_oddball_trials(n_targets, standard_image_path, target_image_path):
+    standard_n = round(n_targets * (ODDBALL_STANDARD_PROB / ODDBALL_TARGET_PROB))
+    trials = []
+
+    for _ in range(standard_n):
+        trials.append({
+            "trial_type": "standard",
+            "image": str(standard_image_path),
+            "correct_response": 0
+        })
+
+    for _ in range(n_targets):
+        trials.append({
+            "trial_type": "target",
+            "image": str(target_image_path),
+            "correct_response": 1
+        })
+
+    random.shuffle(trials)
+    return trials
+
+
+def validate_lpp_counts(trials):
+    counts = {"positive": 0, "neutral": 0, "negative": 0}
+    for t in trials:
+        if t["valence"] in counts:
+            counts[t["valence"]] += 1
+
+    expected = {"positive": 30, "neutral": 30, "negative": 30}
+    if counts != expected:
+        raise ValueError(
+            f"lpp_images.csv trebuie să conțină exact 30 positive, 30 neutral, 30 negative. "
+            f"Acum are: {counts}"
+        )
+
+
+# =========================
+# PRACTICE
+# =========================
+
+def run_oddball_practice(win, writer, fieldnames, participant_code, n_targets=3):
+    practice_trials = build_oddball_trials(
+        n_targets=n_targets,
+        standard_image_path=ODDBALL_STANDARD_IMAGE,
+        target_image_path=ODDBALL_TARGET_IMAGE
+    )
+
+    draw_text_and_wait(
+        win,
+        "Exersare\n\n"
+        "Veți face acum un scurt exercițiu.\n\n"
+        "Amintiți-vă:\n"
+        "- nu apăsați nimic la imaginea frecventă;\n"
+        "- apăsați SPACE la imaginea rară.\n\n"
+        "Apăsați SPACE pentru a începe exercițiul."
+    )
+
+    image_stim = visual.ImageStim(
+        win,
+        image=None,
+        size=(0.9, 0.7),
+        units="height",
+        interpolate=True
+    )
+
+    for trial_index, trial in enumerate(practice_trials, start=1):
+        image_stim.image = trial["image"]
+
+        trigger_code = (
+            MARKERS["practice_standard"]
+            if trial["trial_type"] == "standard"
+            else MARKERS["practice_target"]
+        )
+        send_trigger_on_flip(win, trigger_code)
+
+        pressed, rt = run_image_for_duration(
+            win, image_stim, ODDBALL_STIM_DUR, response_key=TARGET_KEY
+        )
+
+        if trial["correct_response"] == 1:
+            acc = 1 if pressed == 1 else 0
+        else:
+            acc = 1 if pressed == 0 else 0
+
+        if acc == 1:
+            fb_text = "Corect"
+        else:
+            fb_text = (
+                "Trebuia să apăsați SPACE"
+                if trial["correct_response"] == 1
+                else "Nu trebuia să răspundeți"
+            )
+
+        save_trial(writer, {
+            "participant_code": participant_code,
+            "task": "oddball_practice",
+            "block": "practice",
+            "trial_index": trial_index,
+            "trial_type": trial["trial_type"],
+            "valence": "neutral_task",
+            "image": trial["image"],
+            "stim_dur_s": ODDBALL_STIM_DUR,
+            "isi_s": ODDBALL_ISI,
+            "response_key": TARGET_KEY if pressed else "",
+            "rt_s": rt,
+            "accuracy": acc,
+            "marker_code": trigger_code,
+            "device": EEG_METADATA["device"],
+            "n_channels": EEG_METADATA["n_channels"],
+            "sampling_rate_hz": EEG_METADATA["sampling_rate_hz"],
+            "reference": EEG_METADATA["reference"],
+            "montage_description": EEG_METADATA["montage_description"],
+            "roi_n100": EEG_METADATA["roi_n100"],
+            "roi_p300": EEG_METADATA["roi_p300"],
+            "roi_lpp": EEG_METADATA["roi_lpp"]
+        }, fieldnames)
+
+        fb = visual.TextStim(
+            win,
+            text=fb_text,
+            color=TEXT_COLOR,
+            height=0.05
+        )
+        fb.draw()
+        win.flip()
+        core.wait(0.8)
+
+        show_fixation(win, ODDBALL_ISI)
+
+    draw_text_and_wait(
+        win,
+        "Exersarea s-a încheiat.\n\n"
+        "Dacă ați înțeles sarcina, apăsați SPACE pentru a începe partea reală."
+    )
+
+
+# =========================
+# TASKS
+# =========================
+
+def run_oddball_block(win, writer, fieldnames, participant_code, n_targets=40):
+    trials = build_oddball_trials(
+        n_targets=n_targets,
+        standard_image_path=ODDBALL_STANDARD_IMAGE,
+        target_image_path=ODDBALL_TARGET_IMAGE
+    )
+
+    draw_text_and_wait(
+        win,
+        "Partea 1\n\n"
+        "În această secțiune vor apărea pe ecran două tipuri de imagini.\n\n"
+        "Mai întâi vi se va arăta ce trebuie să faceți pentru fiecare imagine.\n\n"
+        "Apăsați SPACE pentru a continua."
+    )
+
+    show_instruction_image(
+        win,
+        ODDBALL_STANDARD_IMAGE,
+        "Aceasta este imaginea care apare frecvent.\n"
+        "Când vedeți această imagine, NU apăsați nimic.\n\n"
+        "Apăsați SPACE pentru a continua."
+    )
+
+    show_instruction_image(
+        win,
+        ODDBALL_TARGET_IMAGE,
+        "Aceasta este imaginea care apare rar.\n"
+        "Când vedeți această imagine, apăsați tasta SPACE cât mai repede.\n\n"
+        "Apăsați SPACE pentru a continua."
+    )
+
+    draw_text_and_wait(
+        win,
+        "Pe scurt:\n\n"
+        "- la imaginea frecventă nu răspundeți;\n"
+        "- la imaginea rară apăsați SPACE.\n\n"
+        "Veți face acum o scurtă exersare."
+    )
+
+    run_oddball_practice(
+        win=win,
+        writer=writer,
+        fieldnames=fieldnames,
+        participant_code=participant_code,
+        n_targets=3
+    )
+
+    draw_text_and_wait(
+        win,
+        "Urmează partea reală.\n\n"
+        "Încercați să răspundeți cât mai rapid și cât mai corect.\n\n"
+        "Apăsați SPACE pentru a începe."
+    )
+
+    image_stim = visual.ImageStim(
+        win,
+        image=None,
+        size=(0.9, 0.7),
+        units="height",
+        interpolate=True
+    )
+
+    for trial_index, trial in enumerate(trials, start=1):
+        image_stim.image = trial["image"]
+
+        trigger_code = (
+            MARKERS["oddball_standard"]
+            if trial["trial_type"] == "standard"
+            else MARKERS["oddball_target"]
+        )
+        send_trigger_on_flip(win, trigger_code)
+
+        pressed, rt = run_image_for_duration(
+            win, image_stim, ODDBALL_STIM_DUR, response_key=TARGET_KEY
+        )
+
+        if trial["correct_response"] == 1:
+            acc = 1 if pressed == 1 else 0
+        else:
+            acc = 1 if pressed == 0 else 0
+
+        show_fixation(win, ODDBALL_ISI)
+
+        save_trial(writer, {
+            "participant_code": participant_code,
+            "task": "oddball",
+            "block": "oddball",
+            "trial_index": trial_index,
+            "trial_type": trial["trial_type"],
+            "valence": "neutral_task",
+            "image": trial["image"],
+            "stim_dur_s": ODDBALL_STIM_DUR,
+            "isi_s": ODDBALL_ISI,
+            "response_key": TARGET_KEY if pressed else "",
+            "rt_s": rt,
+            "accuracy": acc,
+            "marker_code": trigger_code,
+            "device": EEG_METADATA["device"],
+            "n_channels": EEG_METADATA["n_channels"],
+            "sampling_rate_hz": EEG_METADATA["sampling_rate_hz"],
+            "reference": EEG_METADATA["reference"],
+            "montage_description": EEG_METADATA["montage_description"],
+            "roi_n100": EEG_METADATA["roi_n100"],
+            "roi_p300": EEG_METADATA["roi_p300"],
+            "roi_lpp": EEG_METADATA["roi_lpp"]
+        }, fieldnames)
+
+
+def run_lpp_block(win, writer, fieldnames, participant_code, csv_path):
+    trials = load_lpp_csv(csv_path)
+    validate_lpp_counts(trials)
+    random.shuffle(trials)
+
+    draw_text_and_wait(
+        win,
+        "Partea 2\n\n"
+        "În această secțiune vor apărea diferite imagini.\n\n"
+        "Vă rugăm să priviți atent fiecare imagine până dispare de pe ecran.\n"
+        "În această parte NU trebuie să apăsați nicio tastă.\n\n"
+        "Important:\n"
+        "- priviți imaginile cu atenție;\n"
+        "- uitați-vă la crucea de fixare când apare;\n"
+        "- stați cât mai nemișcat(ă);\n"
+        "- clipiți cât mai puțin în timpul prezentării imaginilor.\n\n"
+        "Apăsați SPACE pentru a începe."
+    )
+
+    image_stim = visual.ImageStim(
+        win,
+        image=None,
+        size=(0.9, 0.7),
+        units="height",
+        interpolate=True
+    )
+
+    for trial_index, trial in enumerate(trials, start=1):
+        show_fixation(win, LPP_FIX_DUR)
+
+        image_stim.image = trial["image"]
+
+        trigger_code = {
+            "positive": MARKERS["lpp_positive"],
+            "neutral": MARKERS["lpp_neutral"],
+            "negative": MARKERS["lpp_negative"]
+        }.get(trial["valence"], MARKERS["fallback"])
+
+        send_trigger_on_flip(win, trigger_code)
+        run_image_for_duration(win, image_stim, LPP_STIM_DUR, response_key=None)
+
+        save_trial(writer, {
+            "participant_code": participant_code,
+            "task": "lpp_viewing",
+            "block": "lpp",
+            "trial_index": trial_index,
+            "trial_type": "view",
+            "valence": trial["valence"],
+            "image": trial["image"],
+            "stim_dur_s": LPP_STIM_DUR,
+            "isi_s": LPP_FIX_DUR,
+            "response_key": "",
+            "rt_s": "",
+            "accuracy": "",
+            "marker_code": trigger_code,
+            "device": EEG_METADATA["device"],
+            "n_channels": EEG_METADATA["n_channels"],
+            "sampling_rate_hz": EEG_METADATA["sampling_rate_hz"],
+            "reference": EEG_METADATA["reference"],
+            "montage_description": EEG_METADATA["montage_description"],
+            "roi_n100": EEG_METADATA["roi_n100"],
+            "roi_p300": EEG_METADATA["roi_p300"],
+            "roi_lpp": EEG_METADATA["roi_lpp"]
+        }, fieldnames)
+
+
+# =========================
+# MAIN
+# =========================
+
+def main():
+    exp_info = {
+        "participant_code": "",
+        "session": "1"
+    }
+    dlg = gui.DlgFromDict(exp_info, title="ERP Image Task")
+    if not dlg.OK:
+        return
+
+    participant_code = exp_info["participant_code"].strip()
+    session = exp_info["session"].strip()
+
+    outfile = DATA_DIR / f"{participant_code}_ses-{session}_{data.getDateStr()}.csv"
+
+    fieldnames = [
+        "participant_code",
+        "task",
+        "block",
+        "trial_index",
+        "trial_type",
+        "valence",
+        "image",
+        "stim_dur_s",
+        "isi_s",
+        "response_key",
+        "rt_s",
+        "accuracy",
+        "marker_code",
+        "device",
+        "n_channels",
+        "sampling_rate_hz",
+        "reference",
+        "montage_description",
+        "roi_n100",
+        "roi_p300",
+        "roi_lpp"
+    ]
+
+    win = visual.Window(
+        size=(1200, 900),
+        fullscr=False,
+        color=BG_COLOR,
+        units="height"
+    )
+
+    with open(outfile, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+
+        draw_text_and_wait(
+            win,
+            "Bine ați venit!\n\n"
+            "În acest experiment veți vedea o serie de imagini prezentate pe ecran.\n\n"
+            "Sarcina dumneavoastră este să priviți atent ecranul și să urmați "
+            "instrucțiunile pentru fiecare parte a experimentului.\n\n"
+            "Vă rugăm:\n"
+            "- să stați cât mai nemișcat(ă),\n"
+            "- să priviți spre centrul ecranului,\n"
+            "- să clipiți cât mai puțin în timpul prezentării imaginilor,\n"
+            "- să răspundeți cât mai corect și cât mai rapid atunci când este necesar.\n\n"
+            "Experimentul este alcătuit din mai multe secțiuni.\n"
+            "Înainte de fiecare secțiune, veți primi instrucțiuni specifice.\n\n"
+            "Apăsați SPACE pentru a continua."
+        )
+
+        run_oddball_block(
+            win=win,
+            writer=writer,
+            fieldnames=fieldnames,
+            participant_code=participant_code,
+            n_targets=40
+        )
+
+        draw_text_and_wait(
+            win,
+            "Pauză\n\n"
+            "Puteți să vă odihniți câteva momente.\n\n"
+            "Apăsați SPACE când sunteți gata să continuați."
+        )
+
+        run_lpp_block(
+            win=win,
+            writer=writer,
+            fieldnames=fieldnames,
+            participant_code=participant_code,
+            csv_path=LPP_FILE
+        )
+
+        draw_text_and_wait(
+            win,
+            "Experimentul s-a încheiat.\n\n"
+            "Vă mulțumim pentru participare!",
+            wait_for_key=False
+        )
+        core.wait(2.0)
+
+    try:
+        udp_sock.close()
+    except Exception:
+        pass
+    cleanup_and_quit(win)
+
+
+if __name__ == "__main__":
+    main()
