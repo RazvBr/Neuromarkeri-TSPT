@@ -1,0 +1,106 @@
+participant_code,task,block,trial_index,trial_type,valence,image,stim_dur_s,isi_s,response_key,rt_s,accuracy,marker_code,device,n_channels,sampling_rate_hz,reference,montage_description,roi_n100,roi_p300,roi_lpp
+ccccccccc,oddball_practice,practice,1,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball_practice,practice,2,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball_practice,practice,3,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball_practice,practice,4,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball_practice,practice,5,target,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\target_checkerboard.jpg,1.0,2.0,space,0.5490993999410421,1,2,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,1,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,2,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,3,target,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\target_checkerboard.jpg,1.0,2.0,space,0.48262650007382035,1,2,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,4,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,5,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,6,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,7,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,8,target,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\target_checkerboard.jpg,1.0,2.0,,,0,2,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,9,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,oddball,oddball,10,standard,neutral_task,C:\Users\FPSE-Admin\Desktop\Experiment COD\stimuli\oddball\standard_checkerboard.jpg,1.0,2.0,,,1,1,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,1,view,negative,stimuli/negative/neg_029.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,2,view,positive,stimuli/positive/pos_008.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,3,view,neutral,stimuli/neutral/neu_007.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,4,view,neutral,stimuli/neutral/neu_021.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,5,view,positive,stimuli/positive/pos_024.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,6,view,neutral,stimuli/neutral/neu_005.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,7,view,neutral,stimuli/neutral/neu_025.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,8,view,neutral,stimuli/neutral/neu_001.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,9,view,positive,stimuli/positive/pos_026.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,10,view,negative,stimuli/negative/neg_030.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,11,view,positive,stimuli/positive/pos_018.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,12,view,negative,stimuli/negative/neg_010.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,13,view,positive,stimuli/positive/pos_021.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,14,view,negative,stimuli/negative/neg_001.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,15,view,negative,stimuli/negative/neg_013.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,16,view,positive,stimuli/positive/pos_007.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,17,view,negative,stimuli/negative/neg_002.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,18,view,positive,stimuli/positive/pos_027.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,19,view,neutral,stimuli/neutral/neu_024.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,20,view,neutral,stimuli/neutral/neu_008.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,21,view,negative,stimuli/negative/neg_019.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,22,view,positive,stimuli/positive/pos_028.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,23,view,negative,stimuli/negative/neg_005.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,24,view,negative,stimuli/negative/neg_004.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,25,view,neutral,stimuli/neutral/neu_030.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,26,view,positive,stimuli/positive/pos_023.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,27,view,positive,stimuli/positive/pos_029.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,28,view,negative,stimuli/negative/neg_003.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,29,view,negative,stimuli/negative/neg_008.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,30,view,neutral,stimuli/neutral/neu_003.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,31,view,positive,stimuli/positive/pos_025.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,32,view,positive,stimuli/positive/pos_010.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,33,view,negative,stimuli/negative/neg_016.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,34,view,negative,stimuli/negative/neg_015.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,35,view,negative,stimuli/negative/neg_014.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,36,view,neutral,stimuli/neutral/neu_022.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,37,view,positive,stimuli/positive/pos_019.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,38,view,positive,stimuli/positive/pos_012.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,39,view,neutral,stimuli/neutral/neu_015.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,40,view,neutral,stimuli/neutral/neu_017.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,41,view,positive,stimuli/positive/pos_016.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,42,view,neutral,stimuli/neutral/neu_023.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,43,view,negative,stimuli/negative/neg_018.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,44,view,neutral,stimuli/neutral/neu_014.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,45,view,negative,stimuli/negative/neg_023.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,46,view,neutral,stimuli/neutral/neu_009.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,47,view,negative,stimuli/negative/neg_009.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,48,view,negative,stimuli/negative/neg_021.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,49,view,positive,stimuli/positive/pos_006.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,50,view,negative,stimuli/negative/neg_022.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,51,view,negative,stimuli/negative/neg_024.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,52,view,neutral,stimuli/neutral/neu_018.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,53,view,positive,stimuli/positive/pos_005.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,54,view,negative,stimuli/negative/neg_012.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,55,view,neutral,stimuli/neutral/neu_029.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,56,view,neutral,stimuli/neutral/neu_016.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,57,view,positive,stimuli/positive/pos_003.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,58,view,negative,stimuli/negative/neg_027.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,59,view,negative,stimuli/negative/neg_007.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,60,view,neutral,stimuli/neutral/neu_011.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,61,view,neutral,stimuli/neutral/neu_004.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,62,view,positive,stimuli/positive/pos_022.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,63,view,neutral,stimuli/neutral/neu_002.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,64,view,neutral,stimuli/neutral/neu_028.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,65,view,positive,stimuli/positive/pos_013.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,66,view,positive,stimuli/positive/pos_004.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,67,view,positive,stimuli/positive/pos_001.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,68,view,negative,stimuli/negative/neg_011.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,69,view,neutral,stimuli/neutral/neu_010.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,70,view,neutral,stimuli/neutral/neu_006.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,71,view,positive,stimuli/positive/pos_014.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,72,view,neutral,stimuli/neutral/neu_019.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,73,view,neutral,stimuli/neutral/neu_027.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,74,view,negative,stimuli/negative/neg_025.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,75,view,positive,stimuli/positive/pos_015.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,76,view,positive,stimuli/positive/pos_011.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,77,view,negative,stimuli/negative/neg_028.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,78,view,negative,stimuli/negative/neg_020.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,79,view,negative,stimuli/negative/neg_017.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,80,view,positive,stimuli/positive/pos_002.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,81,view,negative,stimuli/negative/neg_006.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,82,view,positive,stimuli/positive/pos_017.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,83,view,neutral,stimuli/neutral/neu_020.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,84,view,positive,stimuli/positive/pos_020.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,85,view,positive,stimuli/positive/pos_030.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,86,view,positive,stimuli/positive/pos_009.jpg,2.0,0.5,,,,3,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,87,view,neutral,stimuli/neutral/neu_013.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,88,view,negative,stimuli/negative/neg_026.jpg,2.0,0.5,,,,5,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,89,view,neutral,stimuli/neutral/neu_026.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
+ccccccccc,lpp_viewing,lpp,90,view,neutral,stimuli/neutral/neu_012.jpg,2.0,0.5,,,,4,Unicorn Hybrid Black,8,250,L/R mastoids,"Fz,C3,Cz,C4,Pz,PO7,Oz,PO8","PO7,Oz,PO8",Pz,Pz
